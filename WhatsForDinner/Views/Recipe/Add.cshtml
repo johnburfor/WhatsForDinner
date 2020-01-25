@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Add";
+}
+
+@model WhatsForDinner.ViewModels.AddRecipeViewModel
+
+<h1>Add Recipe</h1>
+
+<form asp-controller="Recipe" asp-action="Add" method="post">
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Ingredients"></label>
+        <input class="form-control" asp-for="Ingredients" />
+        <span asp-validation-for="Ingredients"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Directions"></label>
+        <input class="form-control" asp-for="Directions" />
+        <span asp-validation-for="Directions"></span>
+    </div>
+
+    <input type="submit" value="Add Recipe" />
+
+</form>

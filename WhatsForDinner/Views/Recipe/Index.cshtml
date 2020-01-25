@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Recipes</h2>
+
+@model List<WhatsForDinner.Models.Recipe>
+<ul>
+    @foreach (var Recipe in Model)
+    {
+        <li><a>@Recipe.Name</a></li>
+    }
+</ul>
+<p><a asp-controller="Recipe" asp-action="Add">Add Recipe</a></p>
