@@ -1,0 +1,29 @@
+﻿
+@model WhatsForDinner.ViewModels.ViewRecipeViewModel
+
+
+@{
+    ViewBag.Title = Model.Recipe.Name;
+}
+
+<h1>@Model.Recipe.Name</h1>
+
+<table class="table">
+
+    <tr>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Directions</th>
+    </tr>
+
+    @foreach (var recipe in Model.Items)
+    {
+        <tr>
+            <td>@recipe.Name</td>
+            <td>@recipe.Ingredients</td>
+            <td>@recipe.Directions</td>
+        </tr>
+    }
+</table>
+
+
