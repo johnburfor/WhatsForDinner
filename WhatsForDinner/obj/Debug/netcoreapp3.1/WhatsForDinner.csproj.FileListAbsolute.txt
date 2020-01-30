@@ -157,3 +157,4 @@ C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\net
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\Add.cshtml.g.cs
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Shared\View.cshtml.g.cs
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\ViewRecipe.cshtml.g.cs
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\Remove.cshtml.g.cs

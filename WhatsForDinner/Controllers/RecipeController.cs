@@ -74,5 +74,26 @@ namespace WhatsForDinner.Controllers
 
             return View(viewRecipeViewModel);
         }
+
+        public IActionResult Remove()
+        {
+            ViewBag.title = "Remove Recipes";
+            ViewBag.recipes = context.Recipes.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Remove(int[] recipeIds)
+        {
+            foreach (int recipeId in recipeIds)
+            {
+                Recipe theRecipe = context.Recipes.Single(c => c.ID == recipeId);
+                context.Recipes.Remove(theRecipe);
+            }
+
+            context.SaveChanges();
+
+            return Redirect("/");
+        }
     }
 }
