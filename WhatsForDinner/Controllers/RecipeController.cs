@@ -95,5 +95,24 @@ namespace WhatsForDinner.Controllers
 
             return Redirect("/");
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Recipe recipe = context.Recipes.Find(id);
+            return View(recipe);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Recipe recipe)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(recipe).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(recipe);
+        }
     }
 }

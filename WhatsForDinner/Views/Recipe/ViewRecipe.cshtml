@@ -1,7 +1,6 @@
 ﻿
 @model WhatsForDinner.ViewModels.ViewRecipeViewModel
 
-
 @{
     ViewBag.Title = Model.Recipe.Name;
 }
@@ -26,4 +25,8 @@
     }
 </table>
 
+    @foreach (var Recipe in Model.Items)
+    {
+        <p><a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Recipe.ID">Edit Recipe</a></p>
+    }
 
