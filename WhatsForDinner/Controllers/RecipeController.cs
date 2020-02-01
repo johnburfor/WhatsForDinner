@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WhatsForDinner.Data;
@@ -26,6 +27,7 @@ namespace WhatsForDinner.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult Add()
         {
             AddRecipeViewModel addRecipeViewModel = new AddRecipeViewModel();
@@ -33,6 +35,7 @@ namespace WhatsForDinner.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Add(AddRecipeViewModel addRecipeViewModel)
         {
             if (ModelState.IsValid)
@@ -75,6 +78,7 @@ namespace WhatsForDinner.Controllers
             return View(viewRecipeViewModel);
         }
 
+        [Authorize]
         public IActionResult Remove()
         {
             ViewBag.title = "Remove Recipes";
@@ -83,6 +87,7 @@ namespace WhatsForDinner.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Remove(int[] recipeIds)
         {
             foreach (int recipeId in recipeIds)
@@ -96,14 +101,14 @@ namespace WhatsForDinner.Controllers
             return Redirect("/");
         }
 
-        [HttpGet]
+        [HttpGet][Authorize]
         public IActionResult Edit(int id)
         {
             Recipe recipe = context.Recipes.Find(id);
             return View(recipe);
         }
 
-        [HttpPost]
+        [HttpPost][Authorize]
         public IActionResult Edit(Recipe recipe)
         {
             if (ModelState.IsValid)
