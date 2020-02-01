@@ -45,7 +45,8 @@ namespace WhatsForDinner.Controllers
                 {
                     Name = addRecipeViewModel.Name,
                     Ingredients = addRecipeViewModel.Ingredients,
-                    Directions = addRecipeViewModel.Directions
+                    Directions = addRecipeViewModel.Directions,
+                    Rating = addRecipeViewModel.Rating
                 };
 
                 context.Recipes.Add(newRecipe);
@@ -66,6 +67,7 @@ namespace WhatsForDinner.Controllers
                // .Include(item => item.Name)
                // .Include(item => item.Ingredients)
                // .Include(item => item.Directions)
+               // .Include(item => itme.Rating)
                 .Where(cm => cm.ID == id)
                 .ToList();
 
@@ -98,7 +100,7 @@ namespace WhatsForDinner.Controllers
 
             context.SaveChanges();
 
-            return Redirect("/");
+            return Redirect("/Recipe");
         }
 
         [HttpGet][Authorize]

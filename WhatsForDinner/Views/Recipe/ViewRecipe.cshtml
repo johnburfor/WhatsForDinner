@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Ingredients</th>
         <th>Directions</th>
+        <th>Rating</th>
     </tr>
 
     @foreach (var recipe in Model.Items)
@@ -21,6 +22,7 @@
             <td>@recipe.Name</td>
             <td>@recipe.Ingredients</td>
             <td>@recipe.Directions</td>
+            <td>@recipe.Rating</td>
         </tr>
     }
 </table>

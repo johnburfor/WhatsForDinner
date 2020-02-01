@@ -15,5 +15,7 @@ namespace WhatsForDinner.ViewModels
         public string Ingredients { get; set; }
         [Display(Name = "Directions")]
         public string Directions { get; set; }
+        [Display(Name = "Rating")]
+        public int Rating { get; set; }
     }
 }
