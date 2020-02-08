@@ -15,22 +15,28 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <input asp-for="Name" class="form-control" required="required"/>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Ingredients" class="control-label"></label>
-                <input asp-for="Ingredients" class="form-control" />
+                <textarea asp-for="Ingredients" class="form-control" required="required" rows="5"></textarea>
                 <span asp-validation-for="Ingredients" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Directions" class="control-label"></label>
-                <input asp-for="Directions" class="form-control" />
+                <textarea asp-for="Directions" class="form-control" required="required" rows="5"></textarea>
                 <span asp-validation-for="Directions" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
+                <select class="selectpicker" asp-for="Rating">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
                 <span asp-validation-for="Rating" class="text-danger"></span>
             </div>
             <div class="form-group">

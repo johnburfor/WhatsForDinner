@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WhatsForDinner.Data;
 using WhatsForDinner.Models;
 using WhatsForDinner.ViewModels;
+using PagedList;
 
 namespace WhatsForDinner.Controllers
 {
@@ -19,11 +20,57 @@ namespace WhatsForDinner.Controllers
         {
             context = dbContext;
         }
-        public IActionResult Index()
-        {
-            List<Recipe> Recipes = context.Recipes.ToList();
 
-            return View(Recipes);
+        //public IActionResult Index()
+        //{
+        //    List<Recipe> Recipes = context.Recipes.ToList();
+
+        //    return View(Recipes);
+        //}
+
+        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.RatingSortParm = sortOrder == "Rating" ? "rating_desc" : "Rating";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var recipes = from r in context.Recipes
+                           select r;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                recipes = recipes.Where(r => r.Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    recipes = recipes.OrderByDescending(r => r.Name);
+                    break;
+                case "Date":
+                    recipes = recipes.OrderBy(r => r.Rating);
+                    break;
+                case "rating_desc":
+                    recipes = recipes.OrderByDescending(r => r.Rating);
+                    break;
+                default:
+                    recipes = recipes.OrderBy(r => r.Name);
+                    break;
+            }
+            return View(recipes.ToList());
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(recipes.ToPagedList(pageNumber, pageSize));
         }
 
         [HttpGet]

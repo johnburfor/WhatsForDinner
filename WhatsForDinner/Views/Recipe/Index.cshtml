@@ -1,15 +1,47 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Recipes";
 }
 
 <h2>Recipes</h2>
 
-@model List<WhatsForDinner.Models.Recipe>
-<ul>
+@using (Html.BeginForm("Index", "Recipe", FormMethod.Get))
+{
+<p>
+    Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Search" />
+</p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th style="text-align:center">
+            @Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th></th>
+    </tr>
+
+    @model List<WhatsForDinner.Models.Recipe>
+
     @foreach (var Recipe in Model)
     {
-        <li><a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@Recipe.ID">@Recipe.Name</a></li>
+
+
+        <tr>
+            <td><a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@Recipe.ID">@Recipe.Name</a></td>
+
+            <td style="text-align:center">@Recipe.Rating</td>
+        </tr>
     }
-</ul>
+
+</table>
+
+
 <p><a asp-controller="Recipe" asp-action="Add">Add Recipe</a></p>
 <p><a asp-controller="Recipe" asp-action="Remove">Remove Recipe</a></p>
