@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-WhatsForDinner-7C98FAF6-FFFF-4098-AA6C-0BE9B4349337</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\css\Images\home.jpg" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="GenFu" Version="1.5.6" />
@@ -16,6 +20,11 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
     <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Content\" />
   </ItemGroup>
 
 </Project>
