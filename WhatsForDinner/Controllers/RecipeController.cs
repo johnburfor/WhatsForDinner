@@ -28,7 +28,7 @@ namespace WhatsForDinner.Controllers
         //    return View(Recipes);
         //}
 
-        public ViewResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public async Task<ViewResult> IndexAsync(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -36,7 +36,7 @@ namespace WhatsForDinner.Controllers
 
             if (searchString != null)
             {
-                page = 1;
+                pageNumber = 1;
             }
             else
             {
@@ -66,11 +66,9 @@ namespace WhatsForDinner.Controllers
                     recipes = recipes.OrderBy(r => r.Name);
                     break;
             }
-            return View(recipes.ToList());
 
             int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(recipes.ToPagedList(pageNumber, pageSize));
+            return View(await PaginatedList<Recipe>.CreateAsync(recipes.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
         [HttpGet]

@@ -157,7 +157,14 @@ C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\net
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\ViewRecipe.cshtml.g.cs
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\Remove.cshtml.g.cs
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\Edit.cshtml.g.cs
-C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\WhatsForDinner.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\WhatsForDinner.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\PagedList.dll
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\PagedList.Mvc.dll
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\WhatsForDinner.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\WhatsForDinner.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll

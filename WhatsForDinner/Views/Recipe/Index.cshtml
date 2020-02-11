@@ -1,4 +1,4 @@
-﻿
+﻿@model PaginatedList<WhatsForDinner.Models.Recipe>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -10,10 +10,10 @@
 
 @using (Html.BeginForm("Index", "Recipe", FormMethod.Get))
 {
-<p>
-    Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-    <input type="submit" value="Search" />
-</p>
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
 }
 
 <table class="table">
@@ -22,12 +22,12 @@
             @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th style="text-align:center">
-            @Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+            @Html.ActionLink("Rating", "Index", new { sortOrder = ViewBag.RatingSortParm, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th></th>
     </tr>
 
-    @model List<WhatsForDinner.Models.Recipe>
+
 
     @foreach (var Recipe in Model)
     {
@@ -42,6 +42,26 @@
 
 </table>
 
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
 
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-primary @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-primary @nextDisabled">
+    Next
+</a>
+<br>
+<br />
 <p><a asp-controller="Recipe" asp-action="Add">Add Recipe</a></p>
 <p><a asp-controller="Recipe" asp-action="Remove">Remove Recipe</a></p>
