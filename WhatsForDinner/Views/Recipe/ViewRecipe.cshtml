@@ -7,6 +7,9 @@
     }
 </script>
 
+@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<IdentityUser> userManager
 
 @model WhatsForDinner.ViewModels.ViewRecipeViewModel
 
@@ -16,32 +19,34 @@
 
 <h1>@Model.Recipe.Name</h1>
 <body onload="callOnPageLoad()">
-<table class="table">
+    <table class="table">
 
-    <tr>
-        <th>Name</th>
-        <th>Ingredients</th>
-        <th>Directions</th>
-        <th style="text-align:center">Rating</th>
-    </tr>
-
-    @foreach (var recipe in Model.Items)
-    {
         <tr>
-            <td>@recipe.Name</td>
-            <td><textarea class="form-control" readonly  onkeyup="callOnPageLoad()" id="textareaEx" style="overflow:hidden; background-color:white; border:none; outline:none; resize:none; padding:0">@recipe.Ingredients</textarea></td>
-            <td><textarea class="form-control" readonly  onkeyup="callOnPageLoad()" id="textareaEx2" style="overflow:hidden; background-color:white; border:none; outline:none; resize:none; padding:0">@recipe.Directions</textarea></td>
-            <td style="text-align:center">@recipe.Rating</td>
+            <th>Name</th>
+            <th>Ingredients</th>
+            <th>Directions</th>
+            <th style="text-align:center">Rating</th>
         </tr>
-    }
-</table>
+
+        @foreach (var recipe in Model.Items)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td><textarea class="form-control" readonly onkeyup="callOnPageLoad()" id="textareaEx" style="overflow:hidden; background-color:white; border:none; outline:none; resize:none; padding:0">@recipe.Ingredients</textarea></td>
+                <td><textarea class="form-control" readonly onkeyup="callOnPageLoad()" id="textareaEx2" style="overflow:hidden; background-color:white; border:none; outline:none; resize:none; padding:0">@recipe.Directions</textarea></td>
+                <td style="text-align:center">@recipe.Rating</td>
+            </tr>
+        }
+    </table>
 
     @foreach (var Recipe in Model.Items)
     {
-        <p><a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Recipe.ID">Edit Recipe</a></p>
+        @if (@Recipe.UserId == userManager.GetUserId(User))
+        {
+            <p><a asp-controller="Recipe" asp-action="Edit" asp-route-id="@Recipe.ID">Edit Recipe</a></p>
+        }
     }
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 </body>

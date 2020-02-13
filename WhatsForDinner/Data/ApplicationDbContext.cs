@@ -10,6 +10,8 @@ namespace WhatsForDinner.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Recipe> Recipes { get; set; }
+
+        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

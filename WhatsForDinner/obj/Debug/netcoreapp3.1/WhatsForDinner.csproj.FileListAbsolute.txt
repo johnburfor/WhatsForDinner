@@ -150,7 +150,6 @@ C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\net
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\Index.cshtml.g.cs
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\GenFu.dll
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\Add.cshtml.g.cs
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Shared\View.cshtml.g.cs
@@ -168,3 +167,5 @@ C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\net
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
 C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\MyRecipes.cshtml.g.cs
+C:\Users\robojohnnyfive\source\repos\WhatsForDinner\WhatsForDinner\obj\Debug\netcoreapp3.1\Razor\Views\Recipe\Index.cshtml.g.cs

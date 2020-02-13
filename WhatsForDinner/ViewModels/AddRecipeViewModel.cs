@@ -9,7 +9,7 @@ namespace WhatsForDinner.ViewModels
 {
     public class AddRecipeViewModel
     {
-        [Display(Name = "Recipe Name")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
         [Display(Name = "Ingredients")]
         public string Ingredients { get; set; }
@@ -17,5 +17,6 @@ namespace WhatsForDinner.ViewModels
         public string Directions { get; set; }
         [Display(Name = "Rating")]
         public int Rating { get; set; }
+        
     }
 }

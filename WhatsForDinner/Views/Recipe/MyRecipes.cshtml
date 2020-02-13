@@ -8,10 +8,10 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "All Recipes";
+    ViewBag.Title = "My Recipes";
 }
 
-<h2>All Recipes</h2>
+<h2>My Recipes</h2>
 
 @using (Html.BeginForm("Index", "Recipe", FormMethod.Get))
 {
@@ -41,11 +41,12 @@
 
 
         <tr>
-            
+            @if (@Recipe.UserId == userManager.GetUserId(User))
+            {
                 <td><a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@Recipe.ID">@Recipe.Name</a></td>
 
                 <td style="text-align:center">@Recipe.Rating</td>
-            
+            }
         </tr>
     }
 
@@ -56,14 +57,14 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<a asp-action="Index"
+<a asp-action="MyRecipes"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
    class="btn btn-outline-primary @prevDisabled">
     Previous
 </a>
-<a asp-action="Index"
+<a asp-action="MyRecipes"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    asp-route-currentFilter="@ViewData["CurrentFilter"]"
@@ -73,4 +74,4 @@
 <br>
 <br />
 <p><a asp-controller="Recipe" asp-action="Add">Add Recipe</a></p>
-
+<p><a asp-controller="Recipe" asp-action="Remove">Remove Recipe</a></p>

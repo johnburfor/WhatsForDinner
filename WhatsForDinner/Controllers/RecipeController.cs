@@ -9,6 +9,8 @@ using WhatsForDinner.Data;
 using WhatsForDinner.Models;
 using WhatsForDinner.ViewModels;
 using PagedList;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace WhatsForDinner.Controllers
 {
@@ -21,6 +23,8 @@ namespace WhatsForDinner.Controllers
             context = dbContext;
         }
 
+        
+
         //public IActionResult Index()
         //{
         //    List<Recipe> Recipes = context.Recipes.ToList();
@@ -28,7 +32,7 @@ namespace WhatsForDinner.Controllers
         //    return View(Recipes);
         //}
 
-        public async Task<ViewResult> IndexAsync(string sortOrder, string currentFilter, string searchString, int? pageNumber)
+        public async Task<ViewResult> MyRecipesAsync(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -71,6 +75,49 @@ namespace WhatsForDinner.Controllers
             return View(await PaginatedList<Recipe>.CreateAsync(recipes.AsNoTracking(), pageNumber ?? 1, pageSize));
         }
 
+        public async Task<ViewResult> IndexAsync(string sortOrder, string currentFilter, string searchString, int? pageNumber)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.RatingSortParm = sortOrder == "Rating" ? "rating_desc" : "Rating";
+
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var recipes = from r in context.Recipes
+                          select r;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                recipes = recipes.Where(r => r.Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    recipes = recipes.OrderByDescending(r => r.Name);
+                    break;
+                case "Date":
+                    recipes = recipes.OrderBy(r => r.Rating);
+                    break;
+                case "rating_desc":
+                    recipes = recipes.OrderByDescending(r => r.Rating);
+                    break;
+                default:
+                    recipes = recipes.OrderBy(r => r.Name);
+                    break;
+            }
+
+            int pageSize = 3;
+            return View(await PaginatedList<Recipe>.CreateAsync(recipes.AsNoTracking(), pageNumber ?? 1, pageSize));
+        }
+
         [HttpGet]
         [Authorize]
         public IActionResult Add()
@@ -83,6 +130,7 @@ namespace WhatsForDinner.Controllers
         [Authorize]
         public IActionResult Add(AddRecipeViewModel addRecipeViewModel)
         {
+            
             if (ModelState.IsValid)
             {
                 // Add the recipe to my existing recipes
@@ -91,7 +139,9 @@ namespace WhatsForDinner.Controllers
                     Name = addRecipeViewModel.Name,
                     Ingredients = addRecipeViewModel.Ingredients,
                     Directions = addRecipeViewModel.Directions,
-                    Rating = addRecipeViewModel.Rating
+                    Rating = addRecipeViewModel.Rating,
+                    UserId = User.FindFirst(ClaimTypes.NameIdentifier).Value
+
                 };
 
                 context.Recipes.Add(newRecipe);
@@ -145,7 +195,7 @@ namespace WhatsForDinner.Controllers
 
             context.SaveChanges();
 
-            return Redirect("/Recipe");
+            return Redirect("/Recipe/MyRecipes");
         }
 
         [HttpGet][Authorize]
