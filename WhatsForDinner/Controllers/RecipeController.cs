@@ -23,7 +23,7 @@ namespace WhatsForDinner.Controllers
             context = dbContext;
         }
 
-        
+
 
         //public IActionResult Index()
         //{
@@ -32,23 +32,12 @@ namespace WhatsForDinner.Controllers
         //    return View(Recipes);
         //}
 
-        public async Task<ViewResult> MyRecipesAsync(string sortOrder, string currentFilter, string searchString, int? pageNumber)
+        public ViewResult MyRecipes(string sortOrder, string searchString)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.RatingSortParm = sortOrder == "Rating" ? "rating_desc" : "Rating";
-
-            if (searchString != null)
-            {
-                pageNumber = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
+            
             var recipes = from r in context.Recipes
                            select r;
             if (!String.IsNullOrEmpty(searchString))
@@ -70,9 +59,7 @@ namespace WhatsForDinner.Controllers
                     recipes = recipes.OrderBy(r => r.Name);
                     break;
             }
-
-            int pageSize = 3;
-            return View(await PaginatedList<Recipe>.CreateAsync(recipes.AsNoTracking(), pageNumber ?? 1, pageSize));
+            return View(recipes.ToList());
         }
 
         public async Task<ViewResult> IndexAsync(string sortOrder, string currentFilter, string searchString, int? pageNumber)

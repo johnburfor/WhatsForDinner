@@ -3,9 +3,8 @@
 @inject UserManager<IdentityUser> userManager
 
 
-@model PaginatedList<WhatsForDinner.Models.Recipe>
-@using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
 
 @{
     ViewBag.Title = "My Recipes";
@@ -13,10 +12,10 @@
 
 <h2>My Recipes</h2>
 
-@using (Html.BeginForm("Index", "Recipe", FormMethod.Get))
+@using (Html.BeginForm())
 {
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        Find by name: @Html.TextBox("SearchString")
         <input type="submit" value="Search" />
     </p>
 }
@@ -34,43 +33,31 @@
         <th></th>
     </tr>
 
-
+    @model List<WhatsForDinner.Models.Recipe>
 
     @foreach (var Recipe in Model)
     {
 
+        @if (@Recipe.UserId == userManager.GetUserId(User))
+        {
 
-        <tr>
-            @if (@Recipe.UserId == userManager.GetUserId(User))
-            {
-                <td><a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@Recipe.ID">@Recipe.Name</a></td>
 
-                <td style="text-align:center">@Recipe.Rating</td>
-            }
-        </tr>
+            <text>
+                <tr>
+
+                    <text>        <td><a asp-controller="Recipe" asp-action="ViewRecipe" asp-route-id="@Recipe.ID">@Recipe.Name</a></td> </text>
+
+                    <text>        <td style="text-align:center">@Recipe.Rating</td> </text>
+
+                </tr>  </text>
+
+
+        }
+
     }
-
 </table>
 
-@{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-}
 
-<a asp-action="MyRecipes"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex - 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-outline-primary @prevDisabled">
-    Previous
-</a>
-<a asp-action="MyRecipes"
-   asp-route-sortOrder="@ViewData["CurrentSort"]"
-   asp-route-pageNumber="@(Model.PageIndex + 1)"
-   asp-route-currentFilter="@ViewData["CurrentFilter"]"
-   class="btn btn-outline-primary @nextDisabled">
-    Next
-</a>
 <br>
 <br />
 <p><a asp-controller="Recipe" asp-action="Add">Add Recipe</a></p>
