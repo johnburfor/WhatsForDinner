@@ -11,7 +11,8 @@ namespace WhatsForDinner.Data
     {
         public DbSet<Recipe> Recipes { get; set; }
 
-        
+        public DbSet<LoginClass> LoginClasses { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
